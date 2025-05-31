@@ -1,19 +1,18 @@
----
-
 name: CI workflow
+
 on:
   push:
-    branches: [ "main"]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main"]
+    branches: [ "main" ]
 
 jobs:
   build:
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
     container: python:3.9-slim
     steps:
       - name: Checkout
-        uses: action/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         run: |
@@ -27,4 +26,3 @@ jobs:
 
       - name: Run unit tests with nose
         run: nosetests -v --with-spec --spec-color --with-coverage --cover-package=app
-
